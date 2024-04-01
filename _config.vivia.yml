@@ -27,6 +27,9 @@ avatar: medias/icon.jpeg                            # Path to the avatar image r
 author: CosmoLau
 subtitle: 啥也不会的卑微程序员
 links:
+  - name: Email
+    icon: fa-solid fa-envelope
+    url: mailto:cosmolau@qq.com
   - name: Bilibili
     icon: fa-brands fa-bilibili    # Find icon codes at https://fontawesome.com/search
     url: https://space.bilibili.com/2260014
