@@ -12,7 +12,11 @@ tags:
   - 插件开发
 categories:
   - [教程, 游戏开发]
+photos: medias/cocos-extension-cover.jpg
 ---
+> 视频教程
+> <iframe src="//player.bilibili.com/player.html?aid=357514260&bvid=BV1VX4y1t7tH&cid=1170026892&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="400px"></iframe>
+
 ## 前言
 
 近期发布了一个 Cocos Creator 2.4.x 的自动化插件，想移植到 3.x 版本，但 [扩展编辑器 官方文档](https://docs.cocos.com/creator/manual/zh/editor/extension/readme.html) 的教程让我这种小白一言难尽，尽管我刚开发完一款 2.x 的插件，3.x 也让我折腾了很久。
