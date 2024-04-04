@@ -79,8 +79,8 @@ comment:
 
 #Analytics
 gauges_analytics: false
-google_analytics: false #UA-xxxxxx
-baidu_analytics: false # ddxxxxxxxxxxxxxxxxx In the https://hm.baidu.com/hm.js? Afterwards
+google_analytics: true #UA-xxxxxx
+baidu_analytics: true # ddxxxxxxxxxxxxxxxxx In the https://hm.baidu.com/hm.js? Afterwards
 
 archive_generator:
   per_page: 0
