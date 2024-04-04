@@ -21,6 +21,7 @@ i18n_dir: ':lang'
 skip_render:
   - game/**
   - docs/*/**
+  - baidu_verify_codeva-qYAlRVSC7n.html
 new_post_name: ':title.md'
 default_layout: post
 titlecase: false
