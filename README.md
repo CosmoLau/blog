@@ -1,3 +1,7 @@
+> [!NOTE]
+> 本仓库已经迁移到 https://github.com/CosmoLau/CosmoLau.github.io
+> 除非必要，否则不再更新，只做归档
+
 # CosmoLau 的个人博客
 
 这里是我的个人博客项目，博客由 [Hexo](https://hexo.io/zh-cn/) 搭建，使用 [vivia](https://github.com/saicaca/hexo-theme-vivia) 作为博客主题，通过 GitHub Page 进行部署。
