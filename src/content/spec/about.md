@@ -1,9 +1,19 @@
-# About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
+---
+title: 关于
+published: 2024-4-1 15:10:00
+---
+
+# 关于
+
+这里是 CosmoLau 的个人博客，博客由 [Astro](https://astro.build/) 搭建，使用 [Fuwari](https://github.com/saicaca/fuwari) 作为博客主题，通过 GitHub Page 进行部署。
+
+我会在这里分享一些自己的技术总结，或者一些奇思妙想。
+
+## 我的博客仓库
+
+::github{repo="CosmoLau/CosmoLau.github.io"}
+
+## Fuwari 仓库
 
 ::github{repo="saicaca/fuwari"}
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
