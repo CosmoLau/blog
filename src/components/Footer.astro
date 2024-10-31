@@ -1,5 +1,6 @@
 ---
 
+import { Icon } from 'astro-icon/components'
 import { profileConfig } from '../config'
 import { url } from '../utils/url-utils'
 ---
@@ -15,5 +16,11 @@ import { url } from '../utils/url-utils'
         Powered by
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> &
         <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
+    </div>
+    <div class="transition text-50 text-sm flex items-center justify-center">
+        <Icon name="material-symbols:visibility-outline"></Icon>&nbsp;
+        <span id="busuanzi_value_site_pv"></span>&nbsp;&nbsp;
+        <Icon name="material-symbols:emoji-people"></Icon>&nbsp;
+        <span id="busuanzi_value_site_uv"></span>
     </div>
 </div>
