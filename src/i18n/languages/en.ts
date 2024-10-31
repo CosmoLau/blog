@@ -17,12 +17,17 @@ export const en: Translation = {
   [Key.uncategorized]: 'Uncategorized',
   [Key.noTags]: 'No Tags',
 
+  [Key.wordNum]: 'Word number',
   [Key.wordCount]: 'word',
   [Key.wordsCount]: 'words',
+  [Key.readingTime]: 'Reading time',
   [Key.minuteCount]: 'minute',
   [Key.minutesCount]: 'minutes',
   [Key.postCount]: 'post',
   [Key.postsCount]: 'posts',
+  [Key.pageViewTitle]: 'Page views',
+  [Key.pageViewCount]: 'time',
+  [Key.pageViewsCount]: 'times',
 
   [Key.themeColor]: 'Theme Color',
 

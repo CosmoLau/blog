@@ -17,12 +17,17 @@ export const zh_CN: Translation = {
   [Key.uncategorized]: '未分类',
   [Key.noTags]: '无标签',
 
+  [Key.wordNum]: '字数',
   [Key.wordCount]: '字',
   [Key.wordsCount]: '字',
+  [Key.readingTime]: '阅读时长',
   [Key.minuteCount]: '分钟',
   [Key.minutesCount]: '分钟',
   [Key.postCount]: '篇文章',
   [Key.postsCount]: '篇文章',
+  [Key.pageViewTitle]: '阅读量',
+  [Key.pageViewCount]: '次',
+  [Key.pageViewsCount]: '次',
 
   [Key.themeColor]: '主题色',
 

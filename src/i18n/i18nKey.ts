@@ -14,12 +14,17 @@ enum I18nKey {
   uncategorized = 'uncategorized',
   noTags = 'noTags',
 
+  wordNum = 'wordNum',
   wordCount = 'wordCount',
   wordsCount = 'wordsCount',
+  readingTime = 'readingTime',
   minuteCount = 'minuteCount',
   minutesCount = 'minutesCount',
   postCount = 'postCount',
   postsCount = 'postsCount',
+  pageViewTitle = 'pageViewTitle',
+  pageViewCount = 'pageViewCount',
+  pageViewsCount = 'pageViewsCount',
 
   themeColor = 'themeColor',
 
