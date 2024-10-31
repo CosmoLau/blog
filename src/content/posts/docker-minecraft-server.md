@@ -6,13 +6,6 @@ category: 教程
 description: 搭建《我的世界》服务器是一个折磨的过程，但用上 Docker，就能省去很多麻烦。
 ---
 
-```mermaid
-sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    John-->>Alice: Great!
-    Alice-)John: See you later!
-```
-
 本篇是一个使用 Docker 进行游戏服务器快速搭建的教程，需要先自行安装 [Docker](https://docs.docker.com/engine/install/)，以做好前置准备。
 
 本教程基于 [docker-minecraft-server](https://github.com/itzg/docker-minecraft-server) 项目进行部署，详情请参阅 [docker-minecraft-server 文档](https://docker-minecraft-server.readthedocs.io/en/latest/)。
