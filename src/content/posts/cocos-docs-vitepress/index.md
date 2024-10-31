@@ -14,13 +14,13 @@ category: 分享
 
 先上效果图：
 
-![主页](cocos-docs-vitepress/主页.png)
+![主页](主页.png)
 
-![手册](cocos-docs-vitepress/手册.png)
+![手册](手册.png)
 
-![夜间模式](cocos-docs-vitepress/夜间模式.png)
+![夜间模式](夜间模式.png)
 
-![版本](cocos-docs-vitepress/版本.png)
+![版本](版本.png)
 
 如果觉得效果还不错，可以到 https://www.cosmolau.top/docs/cocos/ 在线体验一下，由于移植的工作量主要在于侧边栏的移植，目前 500 多篇文章只有 100 多篇显示在了侧边栏，这还只是中文文档（英文文档也是 500 篇），所以在线版的并不完整。感兴趣的话可以到 [GitHub 仓库](https://github.com/CosmoLau/cocos-docs-vitepress) 来参与移植，或者 fork 下来自己把玩也行。
 
@@ -55,7 +55,7 @@ category: 分享
 ```shell
 build error:
 
-Error: [vite]: Rollup failed to resolve import "jsb/infrastructure.png" from "E:/myWorkSpace/docs/cocos-docs-vitepress/docs/zh/manual/advanced-topics/jsb-manual-binding.md".
+Error: [vite]: Rollup failed to resolve import "jsb/infrastructure.png" from "E:/myWorkSpace/docs/docs/zh/manual/advanced-topics/jsb-manual-binding.md".
 
 This is most likely unintended because it can break your application at runtime.
 

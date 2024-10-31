@@ -3,7 +3,7 @@ title: 【从零开始的插件开发】使用 CC3.x + UI组件 + Vue3 开发一
 published: 2024-04-01 18:40:44
 tags: [Cocos Creator, 插件开发]
 category: 教程
-image: ./cocos-extension/cocos-extension-cover.jpg
+image: ./cocos-extension-cover.jpg
 ---
 
 > 视频教程
@@ -27,11 +27,11 @@ Cocos Creator 3.x 支持创建 `HTML 面板`、`Vue2.x 面板`、`Vue3.x 面板`
 
 首先我们通过 [扩展模板与编译构建](https://docs.cocos.com/creator/manual/zh/editor/extension/create-extension.html) 文档中的方法来创建一个 **Vue3.x 面板** 扩展，我们将 `扩展名` 改为 `extension-vue`，方便后面讲解。
 
-![创建扩展面板](cocos-extension/extension_name.png)
+![创建扩展面板](extension_name.png)
 
 创建完成后，在项目工程的 `extensions` 文件夹中会生成这么一个目录结构：
 
-![扩展目录结构](cocos-extension/目录结构.png)
+![扩展目录结构](目录结构.png)
 
 目录结构的详细解释，在 [目录结构](https://docs.cocos.com/creator/manual/zh/editor/extension/first.html#%E6%89%A9%E5%B1%95%E7%9B%AE%E5%BD%95) 中有记载，包括 `package.json` 的字段含义，也在同一篇文档中。
 
@@ -52,7 +52,7 @@ npm install
 
 > *提示*：在开发插件的过程中如果遇到数据没刷新之类的问题，可以使用此方法来重新关闭开启插件，以重新加载插件。
 
-![启用插件](cocos-extension/启用插件.png)
+![启用插件](启用插件.png)
 
 接着就能通过 `面板` -> `extension-vue` -> `默认面板` 打开扩展模板面板，此时已经完成了扩展的创建。
 
@@ -64,11 +64,11 @@ npm install
 
 我们根据 [UI 组件](https://docs.cocos.com/creator/manual/zh/editor/extension/ui.html) 文档的步骤，通过 `开发者` -> `UI 组件` 来打开 **UI 组件面板**，这个面板里的参考代码很重要（也有很多坑），我们整个开发过程中都会用到，可以一直开着这个面板。
 
-![UI组件面板](cocos-extension/UI组件面板.png)
+![UI组件面板](UI组件面板.png)
 
 我们回到 **index.html** 中，我们先将 `<my-counter></my-counter>` 和 `<h1 id="text"></h1>` 注释掉，接下来要添加的所有 UI 组件标签都需要写在 `<div id="app"></div>` 标签内。
 
-![注释掉标签](cocos-extension/注释掉标签.png)
+![注释掉标签](注释掉标签.png)
 
 接下来我们尝试用 UI 组件拼出一个界面来。
 
@@ -78,7 +78,7 @@ ui-prop 组件能让可视化界面有一个整洁的排版，是很适合用来
 
 我们先来看一下 UI 组件面板中的 `layout` -> `ui-prop` 组件示例：
 
-![ui-prop示例](cocos-extension/ui-prop示例.png)
+![ui-prop示例](ui-prop示例.png)
 
 先将第一个示例添加到 **index.html** 的 app 标签中，并且添加一个 `<h1></h1>` 标签来作为面板的标题。
 
@@ -118,13 +118,13 @@ ui-prop 组件能让可视化界面有一个整洁的排版，是很适合用来
 
 然后我们通过 `面板` -> `extension-vue` -> `默认面板` 来查看面板效果：
 
-![ui-prop效果](cocos-extension/ui-prop效果.png)
+![ui-prop效果](ui-prop效果.png)
 
 这样看起来不太美观，标题可以居中显示，而且 `ui-prop` 之间得加点间距。
 
 3.x 版本的 UI 组件没有 2.x 的 `ui-box-container` 组件来框柱 `ui-prop`，看起来也不太好看，来看看 2.x 的效果：
 
-![2.x ui-box-container](cocos-extension/ui-box-container.png)
+![2.x ui-box-container](ui-box-container.png)
 
 既然 3.x 没有，那我们就用 CSS 来实现一个，在 **index.css** 中添加以下样式：
 
@@ -194,7 +194,7 @@ ui-prop {
 
 这样，我们的面板就变得整洁了起来：
 
-![add_box_style](cocos-extension/add_box_style.png)
+![add_box_style](add_box_style.png)
 
 > *注意*：编写好 html 后，需要关闭面板重新打开才能看到修改后的内容。
 
@@ -213,7 +213,7 @@ ui-prop {
 ...
 ```
 
-![add_checkbox_noSlot](cocos-extension/add_checkbox_noslot.png)
+![add_checkbox_noSlot](add_checkbox_noslot.png)
 
 所以正确的做法应该是：
 
@@ -228,7 +228,7 @@ ui-prop {
 ...
 ```
 
-![add_checkbox_noSlot](cocos-extension/add_checkbox_slot.png)
+![add_checkbox_noSlot](add_checkbox_slot.png)
 
 > *吐槽*：UI 组件面板中的示例代码很好，但是详细解释太少了，要么就应该像 2.x 一样在官方文档中详细写出每个属性的用法。
 
@@ -426,7 +426,7 @@ createApp({
 
 这样，我们基本算是完成了这个插件的主要功能，让我们通过 `面板` -> `extension-vue` -> `默认面板` 打开面板看看效果吧：
 
-![扩展效果01](cocos-extension/扩展效果01.png)
+![扩展效果01](扩展效果01.png)
 
 看来 Cocos Creator 3.7.3 的 Hello World 模板项目的 Assets 文件夹下有 58 个文件。
 
@@ -458,7 +458,7 @@ createApp({
 
 这里我们用到了 [事件处理](https://cn.vuejs.org/guide/essentials/event-handling.html)，使用 `@confirm` 绑定了 `checkAssets` 函数，UI 组件支持的事件我们可以在 **UI 组件面板** 中查看：
 
-![UI 组件面板查看事件](cocos-extension/UI%20组件面板查看事件.png)
+![UI 组件面板查看事件](UI%20组件面板查看事件.png)
 
 其中 **Events** 就是该组件支持的事件名，示例代码也给出了 Vue 的写法。
 
@@ -468,17 +468,17 @@ createApp({
 
 我们关闭面板，重新打开看看效果：
 
-![扩展效果02](cocos-extension/扩展效果02.png)
+![扩展效果02](扩展效果02.png)
 
 仍然是 58 个文件。（~~废话~~）
 
 不要关闭面板，我们在编辑器的资源管理器中添加一个名为 `script` 的文件夹，并创建一个 TypeScript 脚本文件，叫 **HelloWorld**
 
-![资源管理器](cocos-extension/资源管理器.png)
+![资源管理器](资源管理器.png)
 
 这时，我们点击 `extension-vue` 面板中的 **刷新** 按钮。
 
-![扩展效果03](cocos-extension/扩展效果03.png)
+![扩展效果03](扩展效果03.png)
 
 我们发现多了一个 .ts 类型文件，但是总计比之前多了 3 个，另外两个文件分别是 `script.meta` 和 `HelloWorld.ts.meta` 文件，这是编辑器自动生成的文件。
 
@@ -492,13 +492,13 @@ createApp({
 
 > *吐槽*：官方文档里是有 [多语言系统（i18n）](https://docs.cocos.com/creator/manual/zh/editor/extension/i18n.html) 文档的，但是这篇文档的入口被隐藏在了 [基础功能](https://docs.cocos.com/creator/manual/zh/editor/extension/basic.html) 页面中，侧边栏找不到这个 i18n 文档的入口，而且 **基础功能** 文档，在侧边栏是叫 **扩展功能详解**，真的迷惑……
 
-![i18n文档入口](cocos-extension/i18n入口.png)
+![i18n文档入口](i18n入口.png)
 
 ### 彩蛋
 
 在扩展根目录中放入一个 PNG 格式的图片资源，命名为 `logo.png`，就能在扩展管理器中显示 LOGO 啦。
 
-![logo展示](cocos-extension/logo展示.png)
+![logo展示](logo展示.png)
 
 ## 总结
 
