@@ -3,9 +3,10 @@ title: 使用 VitePress 移植 Cocos 文档
 published: 2024-04-04 15:04:23
 tags: [Cocos Creator, 文档]
 category: 分享
+description: 将基于 GitBook 搭建的 Cocos 文档使用 VitePress 重新搭建
 ---
 
-> 原文链接：https://forum.cocos.org/t/topic/150946
+> 原文链接：https://forum.cocos.org/t/topic/150946 <br>
 > ***注***：官方文档已移植为 VitePress 版本，参阅[Cocos Creator 用户手册](https://docs.cocos.com/creator/3.8/manual/zh/)
 
 众所周知，Cocos 文档是使用 GitBook 发布的，如今已经有了更多成熟的静态网站生成器来构建个性化的开发文档，那么 Cocos 文档是不是也能换件新衣服呢？

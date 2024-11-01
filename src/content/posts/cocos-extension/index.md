@@ -4,6 +4,7 @@ published: 2024-04-01 18:40:44
 tags: [Cocos Creator, 插件开发]
 category: 教程
 image: ./cocos-extension-cover.jpg
+description: Cocos Creator 插件能提高开发效率，本文将带你了解如何从零开发一个插件
 ---
 
 > 视频教程

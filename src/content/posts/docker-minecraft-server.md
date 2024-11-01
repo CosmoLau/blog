@@ -3,7 +3,7 @@ title: 使用 Docker 快速搭建《我的世界》（Minecraft）服务器
 published: 2024-05-15 13:29:50
 tags: [我的世界, 服务器, Docker]
 category: 教程
-description: 搭建《我的世界》服务器是一个折磨的过程，但用上 Docker，就能省去很多麻烦。
+description: 搭建《我的世界》服务器是一个折磨的过程，但用上 Docker，就能省去很多麻烦
 ---
 
 本篇是一个使用 Docker 进行游戏服务器快速搭建的教程，需要先自行安装 [Docker](https://docs.docker.com/engine/install/)，以做好前置准备。
