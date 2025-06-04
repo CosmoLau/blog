@@ -512,6 +512,9 @@ createApp({
 另外，如果本篇文章并不能让你入门插件开发，论坛中也有其他大佬写的开发指南，可以参考他们的帖子：
 
 [[muzzik 教程]：3.x 插件开发指南](https://forum.cocos.org/t/topic/144174)
+
 [【muzzik教程】：插件开发之道](https://forum.cocos.org/t/muzzik/99553)
+
 [手把手教你如何使用 rollup + vue单文件 工作流开发 3.x 插件](https://forum.cocos.org/t/topic/122964)
+
 [【插件开发】升级Vue2.x+Element-ui+组件式开发Creator2.x](https://forum.cocos.org/t/topic/149927)
