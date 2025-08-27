@@ -1,6 +1,6 @@
 ---
 title: 在安卓平板上编写代码
-published: 2025-8-27
+published: 2025-08-27
 description: '安装平板真的有生产力吗？'
 image: ''
 tags: [分享, 平板电脑, 编码, Android, 教程]
