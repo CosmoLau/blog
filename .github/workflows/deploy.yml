@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ master ]
+    branches: [ Firefly ]
   workflow_dispatch:
 
 # Pages 部署需要的权限
@@ -50,7 +50,7 @@ jobs:
 
   deploy:
     environment:
-      name: github-pages
+      name: github-pages-blog
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
