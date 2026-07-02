@@ -5,7 +5,8 @@ export const announcementConfig: AnnouncementConfig = {
 	title: "公告",
 
 	// 公告内容
-	content: "原本的 Fuwari 模板被 GitHub 提醒存在高危漏洞，正在迁移至 Firefly 模板中，页面可能频繁改动",
+	content:
+		"原本的 Fuwari 模板被 GitHub 提醒存在高危漏洞，正在迁移至 Firefly 模板中，页面可能频繁改动",
 
 	// 是否允许用户关闭公告
 	closable: true,

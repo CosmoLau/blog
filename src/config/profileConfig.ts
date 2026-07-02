@@ -22,14 +22,14 @@ export const profileConfig: ProfileConfig = {
 	// showName: true 时显示图标和名称，false 时只显示图标
 	links: [
 		{
-			name: 'Bilibili',
-			icon: 'fa7-brands:bilibili',
-			url: 'https://space.bilibili.com/2260014',
+			name: "Bilibili",
+			icon: "fa7-brands:bilibili",
+			url: "https://space.bilibili.com/2260014",
 		},
 		{
-			name: 'Steam',
-			icon: 'fa7-brands:steam',
-			url: 'https://store.steampowered.com',
+			name: "Steam",
+			icon: "fa7-brands:steam",
+			url: "https://store.steampowered.com",
 		},
 		{
 			name: "Email",
