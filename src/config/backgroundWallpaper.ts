@@ -3,10 +3,6 @@ import type { BackgroundWallpaperConfig } from "@/types/backgroundWallpaper";
 export const backgroundWallpaper: BackgroundWallpaperConfig = {
 	// 壁纸模式："banner" 横幅壁纸，"fullscreen" 全屏壁纸，"overlay" 全屏透明，"none" 纯色背景无壁纸
 	mode: "banner",
-	// 是否允许用户通过导航栏切换壁纸模式
-	// 且同时维护多种壁纸模式过于复杂（已经屎山代码），在切换时有时候可能会出现一些奇怪的过渡效果或者bug
-	// 推荐只选择自己喜欢的模式并关闭切换功能
-	switchable: false,
 	// 是否启用背景视频播放，配置后将在导航栏显示视频播放按钮
 	playerEnable: false,
 	/**
@@ -80,12 +76,10 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 		homeText: {
 			// 是否启用主页横幅文字
 			enable: false,
-			// 是否允许用户通过控制面板切换横幅标题显示
-			switchable: false,
 			// 主页横幅主标题
 			title: "Lovely firefly!",
 			// 主页横幅主标题字体大小
-			titleSize: "3.8rem",
+			titleSize: "4.5rem",
 			// 主页横幅副标题
 			subtitle: [
 				"In Reddened Chrysalis, I Once Rest",
@@ -110,6 +104,10 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 				pauseTime: 2000,
 			},
 		},
+		// 文章横幅信息："description" 显示描述，"meta" 显示日期、字数和阅读时长
+		postInfo: {
+			mode: "description",
+		},
 		// 导航栏配置
 		navbar: {
 			// 导航栏透明模式："semi" 半透明，"full" 完全透明，"semifull" 动态透明
@@ -127,8 +125,6 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 				// 移动端是否启用水波纹动画效果
 				mobile: true,
 			},
-			// 是否允许用户通过控制面板切换水波纹动画
-			switchable: true,
 		},
 		// 渐变过渡效果配置，当水波纹关闭时自动启用，提供壁纸底部到背景色的平滑过渡
 		gradient: {
@@ -140,8 +136,6 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			},
 			// 渐变高度
 			height: "10%",
-			// 是否允许用户通过控制面板切换渐变过渡
-			switchable: true,
 		},
 		// 壁纸轮播配置，横幅壁纸和全屏壁纸共享，仅在配置多张图片时生效
 		carousel: {
@@ -151,8 +145,6 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			interval: 5000,
 			// 过渡效果: 'fade' 渐变 | 'zoom' 缩放 | 'slide' 滑动 | 'kenburns' 旋转木马
 			transitionEffect: "zoom",
-			// 是否允许用户通过控制面板切换壁纸轮播
-			switchable: true,
 		},
 	},
 	// Banner模式特有配置
@@ -164,12 +156,6 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 	},
 	// 全屏透明覆盖模式特有配置
 	overlay: {
-		// 是否允许用户通过控制面板调整全屏透明模式参数
-		switchable: {
-			opacity: true,
-			blur: true,
-			cardOpacity: true,
-		},
 		// 层级，确保壁纸在背景层
 		zIndex: -1,
 		// 壁纸透明度

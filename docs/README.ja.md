@@ -8,7 +8,7 @@
 > 
 > ![Node.js >= 22](https://img.shields.io/badge/node.js-%3E%3D22-brightgreen) 
 ![pnpm >= 9](https://img.shields.io/badge/pnpm-%3E%3D9-blue)
-![Astro](https://img.shields.io/badge/Astro-7.0.7-orange)
+![Astro](https://img.shields.io/badge/Astro-7.1.3-orange)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-blue)
 >
 > [![Stars](https://img.shields.io/github/stars/CuteLeaf/Firefly?style=social)](https://github.com/CuteLeaf/Firefly/stargazers)
@@ -28,7 +28,7 @@
 
 ---
 📖 README：
-**[简体中文](../README.md)** | **[繁體中文](README.zh-TW.md)** | **[English](../README.en.md)** | **[日本語](README.ja.md)** | **[Русский](README.ru.md)** 
+**[简体中文](../README.md)** | **[繁體中文](README.zh-TW.md)** | **[English](../README.en.md)** | **[日本語](README.ja.md)**
 
 🚀 クイックガイド：
 [**🖥️ライブデモ**](https://firefly.cuteleaf.cn/) /
@@ -62,17 +62,11 @@
 >
 >Firefly は、Astro フレームワークと Fuwari テンプレートをベースに開発された、清新で美しくモダンな個人ブログテーマテンプレートです。技術愛好家やコンテンツクリエイター向けに設計されており、モダンな Web 技術スタックを統合し、豊富な機能モジュールと高いカスタマイズ性を備えたインターフェースで、プロフェッショナルで美しい個人ブログを手軽に構築できます。
 >
->主要なレイアウト面では、Firefly は左右のデュアルサイドバー、記事グリッド（多カラム）レイアウト、メイソンリーレイアウトを革新的に追加しています。
->
->さらに、サイト統計、カレンダー、目次、音楽プレーヤー、クイックカテゴリーナビゲーションなどのウィジェットを追加し、サイドバーとページ全体のレイアウトをより豊かにしています。
->
->同時に、共有ポスター、関連記事のおすすめ、ランダム記事などのコンポーネントも追加し、記事ページの内容をさらに充実させています。
->
->**Firefly の上記コンポーネント設計や関連コードを参考または利用する場合は、出典として Firefly を明記してください。**
+>**Firefly コンポーネント設計や関連コードを参考または利用する場合は、出典として Firefly を明記してください。**
 >
 >Firefly はオリジナルの fuwari レイアウトも保持しており、設定ファイルで好みに応じて自由に切り替えられます。
 >
->**レイアウト設定とデモの詳細については、[Firefly レイアウトシステム詳解](https://firefly.cuteleaf.cn/posts/firefly-layout-system/)をご覧ください**
+>**レイアウト設定とデモの詳細については、[Firefly レイアウトシステム詳解](https://firefly.cuteleaf.cn/posts/guide/firefly-layout-system/)をご覧ください**
 >
 >Firefly は i18n の多言語 UI をサポートしていますが、簡体字中国語以外の言語は AI 翻訳です。誤りがある場合は、[Pull Request](https://github.com/CuteLeaf/Firefly/pulls) の提出を歓迎します。
 
@@ -188,6 +182,7 @@ src/
 │   ├── backgroundWallpaper.ts    # 背景壁紙設定
 │   ├── commentConfig.ts          # コメントシステム設定
 │   ├── coverImageConfig.ts       # カバー画像設定
+│   ├── displaySettingsConfig.ts  # パネル構成の設定
 │   ├── dynamicConfig.ts          # モーメントページ設定
 │   ├── effectsConfig.ts          # アニメーションエフェクト設定（桜など）
 │   ├── expressiveCodeConfig.ts   # コードハイライト設定
@@ -236,10 +231,14 @@ pnpm new-d 今日はとても良い天気です
 ```yaml
 ---
 published: 2026-07-15 16:15:29
+pinned: true  # 記事を固定
+location: China # 場所
 ---
 
 本文では Markdown を使用できます。
 ```
+
+[Memos](https://www.usememos.com/) をデータソースとして接続することもできます。`src/config/dynamicConfig.ts` の `memos` オプションを設定すると、ピン留めの同期や画像添付ファイルの表示に対応したリアルタイムデータ取得が可能です。詳細は[モーメントドキュメント](https://docs-firefly.cuteleaf.cn/en/guide/dynamic.html)をご参照ください。
 
 ## 🧩 Markdown拡張
 

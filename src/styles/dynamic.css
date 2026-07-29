@@ -211,17 +211,38 @@ dynamic-feed {
 	flex-direction: column;
 }
 
-.dynamic-identity strong {
+.dynamic-author {
+	width: fit-content;
+	max-width: 100%;
 	overflow: hidden;
 	color: rgb(0 0 0 / 90%);
+	text-decoration: none;
+}
+
+.dynamic-author:hover {
+	color: var(--primary);
+}
+
+.dynamic-identity strong {
+	display: block;
+	overflow: hidden;
+	color: inherit;
 	font-size: 0.95rem;
 	line-height: 1.4;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
+.dynamic-meta {
+	display: flex;
+	min-width: 0;
+	align-items: center;
+	gap: 0.625rem;
+}
+
 .dynamic-time {
 	width: fit-content;
+	flex: 0 0 auto;
 	color: var(--content-meta);
 	font-size: 0.78rem;
 	line-height: 1.5;
@@ -230,6 +251,32 @@ dynamic-feed {
 
 .dynamic-time:hover {
 	color: var(--primary);
+}
+
+.dynamic-location {
+	display: inline-flex;
+	min-width: 0;
+	align-items: center;
+	gap: 0.15rem;
+	color: var(--content-meta);
+	font-size: 0.78rem;
+	line-height: 1.5;
+}
+
+.dynamic-location[hidden] {
+	display: none;
+}
+
+.dynamic-location svg {
+	width: 1rem;
+	height: 1rem;
+	flex: 0 0 auto;
+}
+
+.dynamic-location span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 .dynamic-permalink {
@@ -250,6 +297,23 @@ dynamic-feed {
 	color: var(--primary);
 	opacity: 0.55;
 	pointer-events: none;
+}
+
+.dynamic-pinned-badge {
+	display: inline-flex;
+	align-items: center;
+	margin-left: auto;
+	font-size: 0.65rem;
+	padding: 0.125rem 0.375rem;
+	border-radius: 0.25rem;
+	background: color-mix(in srgb, var(--primary) 10%, transparent);
+	color: var(--primary);
+	font-weight: 500;
+	line-height: 1;
+}
+
+.dynamic-pinned-badge[hidden] {
+	display: none;
 }
 
 .dynamic-entry-decoration svg {
@@ -635,9 +699,13 @@ dynamic-feed {
 }
 
 :root.dark .dynamic-page-header h2,
-:root.dark .dynamic-identity strong,
+:root.dark .dynamic-author,
 :root.dark .dynamic-content {
 	color: rgb(255 255 255 / 90%);
+}
+
+:root.dark .dynamic-author:hover {
+	color: var(--primary);
 }
 
 :root.dark .dynamic-search input,
@@ -650,6 +718,19 @@ dynamic-feed {
 :root.dark .dynamic-year-select select option {
 	background: var(--card-bg);
 	color: rgb(255 255 255 / 90%);
+}
+
+/* 透明模式适配 */
+body.wallpaper-transparent .dynamic-search input {
+	background: transparent;
+}
+
+body.wallpaper-transparent .dynamic-year-select select {
+	background: transparent;
+}
+
+body.wallpaper-transparent .dynamic-year-select select option {
+	background: var(--card-bg);
 }
 
 @media (max-width: 768px) {

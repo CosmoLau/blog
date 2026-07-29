@@ -8,7 +8,7 @@
 > 
 > ![Node.js >= 22](https://img.shields.io/badge/node.js-%3E%3D22-brightgreen) 
 ![pnpm >= 9](https://img.shields.io/badge/pnpm-%3E%3D9-blue)
-![Astro](https://img.shields.io/badge/Astro-7.0.7-orange)
+![Astro](https://img.shields.io/badge/Astro-7.1.3-orange)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-blue)
 >
 > [![Stars](https://img.shields.io/github/stars/CuteLeaf/Firefly?style=social)](https://github.com/CuteLeaf/Firefly/stargazers)
@@ -27,7 +27,7 @@
 
 ---
 📖 README:
-**[简体中文](README.md)** | **[繁體中文](docs/README.zh-TW.md)** | **[English](README.en.md)** | **[日本語](docs/README.ja.md)** | **[Русский](docs/README.ru.md)** 
+**[简体中文](README.md)** | **[繁體中文](docs/README.zh-TW.md)** | **[English](README.en.md)** | **[日本語](docs/README.ja.md)**
 
 🚀 Quick Guide:
 [**🖥️Live Demo**](https://firefly.cuteleaf.cn/) /
@@ -61,17 +61,11 @@
 >
 >Firefly is a fresh, beautiful, and modern personal blog theme template based on the Astro framework and the Fuwari template, designed for tech enthusiasts and content creators. It integrates a modern web tech stack, offering rich feature modules and a highly customizable interface so you can easily build a professional and visually appealing personal blog.
 >
->In terms of key layouts, Firefly innovatively adds dual sidebars, an article grid (multi-column) layout, and a masonry layout.
->
->It also adds widgets such as site statistics, calendar, table of contents, music player, and quick category navigation, making both the sidebar and the overall page layout richer.
->
->At the same time, it also adds components such as share posters, related post recommendations, and random posts, making article pages more content-rich.
->
->**If you reference or use the component designs and related code above from Firefly, please credit Firefly.**
+>**If you refer to or use Firefly component design and related code, please credit Firefly.**
 >
 >Firefly also preserves the original fuwari layout, which can be freely switched in the configuration file according to your preferences.
 >
->**For more layout configurations and demos, please see: [Firefly Layout System Details](https://firefly.cuteleaf.cn/posts/firefly-layout-system/)**
+>**For more layout configurations and demos, please see: [Firefly Layout System Details](https://firefly.cuteleaf.cn/posts/guide/firefly-layout-system/)**
 >
 >Firefly supports i18n multilingual UI, but except for Simplified Chinese, other languages are AI-translated. If you find any errors, feel free to submit a [Pull Request](https://github.com/CuteLeaf/Firefly/pulls) to help improve them.
 
@@ -187,6 +181,7 @@ src/
 │   ├── backgroundWallpaper.ts    # Background wallpaper configuration
 │   ├── commentConfig.ts          # Comment system configuration
 │   ├── coverImageConfig.ts       # Cover image configuration
+│   ├── displaySettingsConfig.ts  # Settings panel configuration
 │   ├── dynamicConfig.ts          # Moments page configuration
 │   ├── effectsConfig.ts          # Animation effects config (sakura, etc.)
 │   ├── expressiveCodeConfig.ts   # Code highlighting configuration
@@ -231,15 +226,19 @@ Moment files are stored in `src/content/dynamic/`, with one Markdown file per mo
 pnpm new-d The weather is lovely today
 ```
 
-`pnpm new-dynamic <content>` is the equivalent full command. 
+`pnpm new-dynamic <content>` is the equivalent full command.
 
 ```yaml
 ---
 published: 2026-07-15 16:15:29
+pinned: true  # Pin article
+location: China # Location
 ---
 
 Moment content supports Markdown.
 ```
+
+Also supports [Memos](https://www.usememos.com/) as a data source. Configure the `memos` option in `src/config/dynamicConfig.ts` to fetch Memos moments in real-time, with pinned sync and image attachment support. See [Moments documentation](https://docs-firefly.cuteleaf.cn/en/guide/dynamic.html).
 
 ## 📖 Markdown Extensions
 

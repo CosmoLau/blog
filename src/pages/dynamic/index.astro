@@ -7,7 +7,6 @@ import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
 import MainGridLayout from "@/layouts/MainGridLayout.astro";
 import "@/styles/dynamic.css";
-import { getCollection } from "astro:content";
 import { url } from "@/utils/url-utils";
 
 if (!siteConfig.pages.dynamic) {
@@ -23,8 +22,10 @@ const showInlineComments = Boolean(
 		commentConfig.type &&
 		commentConfig.type !== "none",
 );
-const dataUrl = url("/api/dynamic.json");
-const dynamicCount = (await getCollection("dynamic")).length;
+const dataUrl = dynamicConfig.apiUrl?.startsWith("http")
+	? dynamicConfig.apiUrl
+	: url(dynamicConfig.apiUrl || "/api/dynamic.json");
+const memos = dynamicConfig.memos;
 ---
 
 <MainGridLayout title={title} description={description}>
@@ -42,10 +43,10 @@ const dynamicCount = (await getCollection("dynamic")).length;
 				</div>
 				<div
 					class="dynamic-count"
-					aria-label={`${dynamicCount} ${i18n(I18nKey.dynamic)}`}
+					aria-label={i18n(I18nKey.dynamic)}
 				>
 					<Icon is:inline name="material-symbols:dynamic-feed-rounded" />
-					<strong>{dynamicCount}</strong>
+					<strong data-dynamic-page-count>0</strong>
 					<span>{i18n(I18nKey.dynamic)}</span>
 				</div>
 				<div class="dynamic-filter">
@@ -77,6 +78,7 @@ const dynamicCount = (await getCollection("dynamic")).length;
 				loadingText={i18n(I18nKey.dynamicLoading)}
 				allYearsText={i18n(I18nKey.dynamicAllYears)}
 				timezone={siteConfig.timezone || "UTC"}
+				{memos}
 			/>
 
 			<DynamicItemTemplate />

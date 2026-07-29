@@ -2,6 +2,7 @@
 import { onMount, tick } from "svelte";
 import ClientPagination from "@/components/common/ClientPagination.svelte";
 import { formatTimezoneOffset } from "@/utils/date-utils";
+import { fetchMemos } from "@/utils/memos-adapter";
 import { registerDynamicGallery } from "./dynamic-gallery";
 import { registerDynamicInlineComments } from "./dynamic-inline-comments";
 
@@ -17,7 +18,15 @@ type DynamicData = {
 	html: string;
 	images: DynamicImage[];
 	searchText: string;
+	pinned?: boolean;
+	location?: string;
 };
+
+interface MemosConfig {
+	enable: boolean;
+	apiUrl: string;
+	parent?: string;
+}
 
 interface Props {
 	source: string;
@@ -28,6 +37,7 @@ interface Props {
 	loadingText: string;
 	allYearsText: string;
 	timezone: string;
+	memos?: MemosConfig;
 }
 
 const {
@@ -39,6 +49,7 @@ const {
 	loadingText,
 	allYearsText,
 	timezone,
+	memos,
 }: Props = $props();
 
 let entries = $state<DynamicData[]>([]);
@@ -147,19 +158,44 @@ function createItem(entry: DynamicData) {
 	if (time) {
 		const date = new Date(entry.published);
 		time.dateTime = date.toISOString();
-		time.textContent = new Intl.DateTimeFormat(
-			document.documentElement.lang || undefined,
-			{
-				timeZone: "UTC",
+		// 第三方 API 和 Memos 使用浏览器本地时区，不做额外时区转换
+		if (source.startsWith("http") || memos?.enable) {
+			time.textContent = date.toLocaleDateString("zh-CN", {
 				year: "numeric",
 				month: "2-digit",
 				day: "2-digit",
 				hour: "2-digit",
 				minute: "2-digit",
-				second: "2-digit",
-			},
-		).format(date);
-		time.textContent += ` ${formatTimezoneOffset(timezone, date)}`;
+			});
+		} else {
+			time.textContent = new Intl.DateTimeFormat(
+				document.documentElement.lang || undefined,
+				{
+					timeZone: "UTC",
+					year: "numeric",
+					month: "2-digit",
+					day: "2-digit",
+					hour: "2-digit",
+					minute: "2-digit",
+					second: "2-digit",
+				},
+			).format(date);
+			time.textContent += ` ${formatTimezoneOffset(timezone, date)}`;
+		}
+	}
+	const location = root.querySelector<HTMLElement>("[data-dynamic-location]");
+	if (location) {
+		const locationText = entry.location?.trim();
+		if (locationText) {
+			const text = location.querySelector<HTMLElement>(
+				"[data-dynamic-location-text]",
+			);
+			if (text) text.textContent = locationText;
+			location.title = locationText;
+			location.removeAttribute("hidden");
+		} else {
+			location.setAttribute("hidden", "");
+		}
 	}
 
 	const content = root.querySelector<HTMLElement>("[data-dynamic-content]");
@@ -176,6 +212,16 @@ function createItem(entry: DynamicData) {
 		}
 		const gallery = root.querySelector<HTMLElement>("dynamic-gallery");
 		if (gallery) gallery.dataset.sourceId = content.id;
+	}
+
+	// 置顶标识
+	const pinned = root.querySelector<HTMLElement>("[data-dynamic-pinned]");
+	if (pinned) {
+		if (entry.pinned) {
+			pinned.removeAttribute("hidden");
+		} else {
+			pinned.setAttribute("hidden", "");
+		}
 	}
 
 	const comments = root.querySelector<HTMLElement>("dynamic-inline-comments");
@@ -239,9 +285,16 @@ onMount(() => {
 
 	const load = async () => {
 		try {
-			const response = await fetch(source);
-			if (!response.ok) throw new Error(`HTTP ${response.status}`);
-			entries = (await response.json()) as DynamicData[];
+			if (memos?.enable) {
+				entries = await fetchMemos(memos.apiUrl, { parent: memos.parent });
+			} else {
+				const response = await fetch(source);
+				if (!response.ok) throw new Error(`HTTP ${response.status}`);
+				entries = (await response.json()) as DynamicData[];
+			}
+			// 更新页面计数
+			const countEl = document.querySelector("[data-dynamic-page-count]");
+			if (countEl) countEl.textContent = String(entries.length);
 			populateYears();
 			currentPage = pageFromUrl();
 			applyFilters(false);
