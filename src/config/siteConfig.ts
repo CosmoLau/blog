@@ -1,8 +1,42 @@
 import type { SiteConfig } from "@/types/siteConfig";
+import { resolvePageToggles } from "../utils/page-toggle-utils";
+import { resolveSiteLang } from "../utils/site-config-utils";
 
 // 定义站点语言
 // 语言代码，例如：'zh_CN', 'zh_TW', 'en', 'ja', 'ru', 'ko'。
-const SITE_LANG = "zh_CN";
+const SITE_LANG = resolveSiteLang("zh_CN");
+
+// 页面开关配置 - 控制特定页面的访问权限，设为false会返回404并自动隐藏对应的导航栏菜单项
+const pages = resolvePageToggles({
+	// ── 社交 (Social) ──────────────────────────────────
+
+	// 友链页面开关
+	friends: true,
+	// 留言板页面开关，需要配置评论系统
+	guestbook: true,
+
+	// ── 我的 (My) ──────────────────────────────────
+
+	// 动态页面开关
+	dynamic: true,
+	// 相册页面开关
+	gallery: true,
+	// 书签导航页面开关
+	booknav: true,
+	// 哔哩哔哩追番页面开关
+	bilibili: false,
+	// 番组计划页面开关
+	bangumi: false,
+	// VNDB页面开关
+	vndb: false,
+	// MyAnimeList页面开关
+	mal: false,
+
+	// ── 关于 (About) ──────────────────────────────────
+
+	// 打赏页面开关
+	sponsor: true,
+});
 
 export const siteConfig: SiteConfig = {
 	// 站点标题
@@ -55,7 +89,7 @@ export const siteConfig: SiteConfig = {
 	favicon: [
 		{
 			// 图标文件路径
-			src: "/favicon/favicon-ai.png",
+			src: "/favicon/firefly-32.png",
 			// 可选，指定主题 'light' | 'dark'
 			// theme: "light",
 			// 可选，图标大小
@@ -71,9 +105,13 @@ export const siteConfig: SiteConfig = {
 		// 2. 本地图片（public目录，不优化）: { type: "image", value: "/assets/images/logo.webp", alt: "Logo" }
 		// 3. 本地图片（src目录，自动优化但会增加构建时间）: { type: "image", value: "assets/images/logo.webp", alt: "Logo" }
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
+		// image 和 url 类型可额外设置 valueDark，用于暗色模式下显示另一张图片，不设置则亮暗色共用 value
+		// 例如: { type: "image", value: "assets/images/logo.png", valueDark: "assets/images/logo-dark.png", alt: "Logo" }
+		// 使用 Astro 图标库时不需要设置 valueDark，图标会自动跟随主题亮暗色切换
 		logo: {
 			type: "image",
-			value: "assets/images/firefly.png",
+			value: "assets/images/logo/firefly-light.png",
+			valueDark: "assets/images/logo/firefly-dark.png",
 			alt: "🍀",
 		},
 		// 导航栏标题
@@ -96,35 +134,32 @@ export const siteConfig: SiteConfig = {
 	timezone: "Asia/Shanghai",
 
 	// 页面开关配置 - 控制特定页面的访问权限，设为false会返回404并自动隐藏对应的导航栏菜单项
-	pages: {
-		// 友链页面开关
-		friends: true,
-		// 打赏页面开关
-		sponsor: true,
-		// 留言板页面开关，需要配置评论系统
-		guestbook: true,
-		// 番组计划页面开关，含追番、游戏、书籍和音乐
-		bangumi: true,
-		// 相册页面开关
-		gallery: true,
-		// 追番页面开关
-		anime: true,
-		// 动态页面开关
-		dynamic: true,
-	},
 
 	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航
 	categoryBar: true,
 
+	// 分类导航栏按钮样式
+	// "pill"：胶囊，主题色浅底圆角
+	// "rectangle"：矩形，配色同胶囊，仅圆角更小
+	categoryStyle: "rectangle",
+
+	// 标签样式，作用于文章列表底部标签、标签页和侧边栏标签
+	// "pill"：胶囊，中性灰底圆角
+	// "rectangle"：矩形，主题色底小圆角
+	tagStyle: "pill",
+
 	// 归档页是否折叠非最新年份文章，禁用后默认展开全部年份
 	foldArticle: true,
 
-	// 文章列表布局配置
+	// ── 文章列表布局配置 ──────────────────────────────────
 	postListLayout: {
 		// 默认布局模式："list" 列表模式（单列布局），"grid" 网格模式（多列布局）
 		defaultMode: "grid",
 		// 移动端默认布局模式，不设置则跟随 defaultMode
 		mobileDefaultMode: "grid",
+		// 列表模式下封面图显示在哪一侧："right" 右侧，"left" 左侧
+		// 网格模式的封面固定在卡片顶部，不受此项影响
+		coverPosition: "right",
 		// 文章简介显示行数，设为 0 则不截断
 		descriptionLines: 2,
 		// 文章卡片底部统计和发布日期是否显示图标
@@ -133,6 +168,10 @@ export const siteConfig: SiteConfig = {
 		// 设置为"meta"：显示在文章标题下的元数据
 		// 设置为"bottom"：顶替stats在底部显示
 		tagsPosition: "bottom",
+		// 底部标签样式，仅在 tagsPosition 为 "bottom" 时生效
+		// "chip"：按钮样式，形状跟随上方的 tagStyle 配置
+		// "text"：无底色，只有文字
+		tagsBottomStyle: "chip",
 		// PostMeta 元数据显示控制
 		meta: {
 			// 是否显示发布日期
@@ -142,7 +181,7 @@ export const siteConfig: SiteConfig = {
 			// 是否显示标签
 			showTags: true,
 			// 标签数量，设为 0 则不限制
-			tagCount: 5,
+			tagCount: 3,
 			// 是否显示字数
 			showWords: false,
 			// 是否显示阅读时间
@@ -164,10 +203,20 @@ export const siteConfig: SiteConfig = {
 			masonry: true,
 			// 网格模式卡片最小宽度(px)，浏览器根据容器宽度自动计算列数
 			columnWidth: 320,
+			// 网格模式封面是否撑满卡片贴边
+			// true：封面顶到卡片左右和上边缘，只有上面两角是圆角
+			// false：封面按卡片内边距内缩，上、左、右留出间距，四角都是圆角
+			coverFullWidth: false,
 		},
 	},
 
-	// 文章内容页配置
+	// 分页配置
+	pagination: {
+		// 每页显示的文章数量
+		postsPerPage: 10,
+	},
+
+	// ── 文章内容页配置 ──────────────────────────────────
 	post: {
 		// 提醒框（Admonitions）配置，修改后需要重启开发服务器才能生效
 		// 主题：'github' | 'obsidian' | 'vitepress' | 'docusaurus'，每个主题风格和语法不同，可根据喜好选择
@@ -187,7 +236,13 @@ export const siteConfig: SiteConfig = {
 		generateOgImages: false,
 	},
 
-	// bangumi配置
+	// ── Bilibili配置 ──────────────────────────────────
+	bilibili: {
+		// 你的 Bilibili 用户 UID
+		uid: "38932988",
+	},
+
+	// ── 番组计划bangumi配置 ──────────────────────────────────
 	bangumi: {
 		// Bangumi用户ID
 		userId: "cosmolau",
@@ -209,29 +264,41 @@ export const siteConfig: SiteConfig = {
 		// },
 	},
 
-	// 追番配置（Bilibili + TMDB）
-	anime: {
-		// Bilibili 配置
-		bilibili: {
-			// 你的 Bilibili 用户 UID
-			uid: "2260014",
-		},
-		// TMDB 配置（可选，需要翻墙）
-		// tmdb: {
-		//   // TMDB API 密钥
-		//   apiKey: "your_tmdb_api_key",
-		//   // TMDB 列表 ID
-		//   listId: "your_list_id",
-		// },
+	// ── VNDB配置 ──────────────────────────────────
+	vndb: {
+		// VNDB 用户 ID
+		userId: "u358128",
+		// 数据模式：static=构建时获取，dynamic=客户端实时获取
+		// static 模式在构建时获取数据并静态渲染，部署后数据不更新
+		// dynamic 模式在浏览器中实时请求 API，始终显示最新数据
+		mode: "static",
+		// 构建时下载并压缩封面到 public/vndb-covers，图片由本站服务器提供
+		downloadCovers: false,
+		// VNDB API 地址
+		apiUrl: "https://api.vndb.org/kana",
+		// 条目详情页地址，末尾需要带 /
+		vnBaseUrl: "https://vndb.org/",
+		// 私密列表访问令牌，仅 static 模式下使用；不要把真实令牌提交到公开仓库！
+		apiToken: "",
+		// 对Nsfw的游戏封面模糊化
+		blurNsfw: true,
 	},
 
-	// 分页配置
-	pagination: {
-		// 每页显示的文章数量
-		postsPerPage: 10,
+	// ── MyAnimeList配置 ──────────────────────────────────
+	mal: {
+		// MyAnimeList 用户名（列表需为公开状态，私密列表无法读取）
+		username: "cuteleaf",
+		// MyAnimeList Client ID，在 https://myanimelist.net/apiconfig 注册免费应用后获取
+		clientId: "	0ef34371450f9c6c809deaadec6aa8f3",
+		// MAL API 地址
+		apiUrl: "https://api.myanimelist.net/v2",
+		// 动画条目详情页地址，末尾需要带 /
+		animeBaseUrl: "https://myanimelist.net/anime/",
+		// 漫画条目详情页地址，末尾需要带 /
+		mangaBaseUrl: "https://myanimelist.net/manga/",
 	},
 
-	// 图像优化及响应式配置
+	// ── 图像优化配置 ──────────────────────────────────
 	// 图像优化压缩只保留avif或webp
 	// 响应式图像是为在不同设备上提高性能而调整的图像。这些图像可以调整大小以适应其容器，并且可以根据访问者的屏幕尺寸和分辨率以不同的大小提供。
 	// Astro 仅能对 src 目录下的图像进行优化，src 目录下的图像越多，构建时间会越长
@@ -247,9 +314,17 @@ export const siteConfig: SiteConfig = {
 		// 为特定域名的图片添加 referrerpolicy="no-referrer" 属性
 		// 支持通配符 *，例如：["i0.hdslb.com", "*.bilibili.com"]
 		// 可解决指定域名图片加载时的 403 问题（如防盗链图片）
-		noReferrerDomains: ["*.hdslb.com", "*.bilibili.com"],
+		noReferrerDomains: [
+			"*.hdslb.com",
+			"*.bilibili.com",
+			"*.myanimelist.net",
+			"*.vndb.org",
+		],
 	},
 
 	// 站点语言，在本配置文件顶部SITE_LANG定义
 	lang: SITE_LANG,
+
+	// 页面开关配置，在本配置文件顶部pages定义
+	pages,
 };

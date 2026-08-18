@@ -13,6 +13,13 @@ export const zh_TW: Translation = {
 	[Key.searchContent]: "內容",
 	[Key.searchViewMore]: "查看更多結果 ({count} 個更多)",
 	[Key.other]: "其他",
+
+	// 導覽列選單分組
+	[Key.navArticles]: "文章",
+	[Key.navSocial]: "社交",
+	[Key.navMine]: "我的",
+	[Key.navAbout]: "關於",
+	[Key.navLinks]: "連結",
 	[Key.all]: "全部",
 
 	[Key.tags]: "標籤",
@@ -76,6 +83,10 @@ export const zh_TW: Translation = {
 	[Key.friendsDescription]: "這裡是我的朋友們，歡迎互相訪問交流",
 	[Key.searchFriends]: "搜尋友鏈...",
 	[Key.friendsEmpty]: "暫無友情連結",
+	[Key.booknav]: "書籤導航",
+	[Key.booknavDescription]: "收藏一些好用的網站，按分類整理",
+	[Key.searchBooknav]: "搜尋書籤...",
+	[Key.booknavEmpty]: "暫無書籤",
 	[Key.guestbook]: "留言",
 	[Key.guestbookDescription]: "歡迎在這裡留下你的足跡，分享你的想法和建議",
 	[Key.untitled]: "無標題",
@@ -170,9 +181,46 @@ export const zh_TW: Translation = {
 	[Key.bangumiUpdatedAt]: "構建時間",
 	[Key.bangumiDataStatic]: "靜態數據",
 
-	// 追番
-	[Key.anime]: "追番",
-	[Key.animeSubtitle]: "我的追番列表，數據來自 Bilibili 和 TMDB",
+	// VNDB
+	[Key.vndb]: "VNDB",
+	[Key.vndbSubtitle]: "我的 VNDB 視覺小說列表",
+	[Key.vndbFilterAll]: "全部",
+	[Key.vndbFilterVoted]: "已評分",
+	[Key.vndbFilterUnvoted]: "未評分",
+	[Key.vndbFilterNotes]: "有筆記",
+	[Key.vndbStatusWishlist]: "想玩",
+	[Key.vndbStatusPlaying]: "在玩",
+	[Key.vndbStatusFinished]: "已玩",
+	[Key.vndbStatusStalled]: "擱置",
+	[Key.vndbStatusDropped]: "拋棄",
+	[Key.vndbStatusUnknown]: "未知",
+	[Key.vndbNoData]: "暫無數據",
+	[Key.vndbNoDataDescription]: "該分類下還沒有任何條目",
+	[Key.vndbEmpty]: "暫無數據",
+	[Key.vndbEmptyReason]:
+		"可能的原因：用戶 ID 不存在、列表為私密、網絡連接問題或 API 限制",
+	[Key.vndbFetchError]: "VNDB 資料拉取失敗",
+	[Key.vndbFetchErrorDesc]:
+		"構建時從 VNDB API 獲取資料失敗，該頁面內容暫不可用。",
+	[Key.vndbNotConfigured]: "未配置 VNDB 用戶ID",
+	[Key.vndbNotConfiguredDesc]:
+		"請在 src/config/siteConfig.ts 中配置你的 VNDB 用戶ID",
+	[Key.vndbLastUpdated]: "數據更新於",
+	[Key.vndbVotes]: "票",
+	[Key.vndbLengthVeryShort]: "極短",
+	[Key.vndbLengthShort]: "短",
+	[Key.vndbLengthMedium]: "中等",
+	[Key.vndbLengthLong]: "長",
+	[Key.vndbLengthVeryLong]: "極長",
+
+	// 追番 - Bilibili
+	[Key.bilibili]: "嗶哩嗶哩",
+	[Key.bilibiliSubtitle]: "我的嗶哩嗶哩追番與追劇列表",
+	[Key.bilibiliNotConfigured]: "未配置嗶哩嗶哩資料來源",
+	[Key.bilibiliNotConfiguredDesc]:
+		"請在 src/config/siteConfig.ts 中配置 bilibili.uid",
+
+	// 追番 - 公共組件
 	[Key.animeTotal]: "總追番",
 	[Key.animeAverageRating]: "平均評分",
 	[Key.animeSearch]: "搜尋番劇...",
@@ -185,20 +233,13 @@ export const zh_TW: Translation = {
 	[Key.animeDateAsc]: "最早發布",
 	[Key.animeNoResults]: "沒有找到匹配的番劇",
 	[Key.animeLastUpdated]: "數據更新於",
-	[Key.animeSource]: "數據來源",
 	[Key.animeEpStatus]: "進度",
 	[Key.animeViewDetails]: "查看詳情",
-	[Key.animeNotConfigured]: "未配置追番資料來源",
-	[Key.animeNotConfiguredDesc]:
-		"請在 src/config/siteConfig.ts 中配置 Bilibili UID 或 TMDB API Key",
 	[Key.animeBilibiliAvg]: "Bilibili 均分",
-	[Key.animeTmdbAvg]: "TMDB 均分",
-	[Key.animeDualSynced]: "雙源已同步",
 	[Key.animeNoOverview]: "暫無簡介",
 	[Key.animeClose]: "關閉",
 	[Key.animeSynopsis]: "劇情簡介",
 	[Key.animeWatchNow]: "立即觀看",
-	[Key.animeViewTmdb]: "查看 TMDB 詳情",
 	[Key.animeAllWithCount]: "全部 ({count})",
 	[Key.animeTVWithCount]: "TV ({count})",
 	[Key.animeMovieWithCount]: "電影 ({count})",
@@ -209,6 +250,36 @@ export const zh_TW: Translation = {
 	[Key.animeTypeDrama]: "電視劇",
 	[Key.animeTypeConcert]: "演唱會",
 
+	// MyAnimeList
+	[Key.mal]: "MyAnimeList",
+	[Key.malSubtitle]: "我的 MyAnimeList 動畫與漫畫列表",
+	[Key.malCategoryAnime]: "動畫",
+	[Key.malCategoryManga]: "漫畫",
+	[Key.malFilterAll]: "全部",
+	[Key.malStatusWatching]: "在看",
+	[Key.malStatusReading]: "在讀",
+	[Key.malStatusCompleted]: "已看完",
+	[Key.malStatusOnHold]: "擱置",
+	[Key.malStatusDropped]: "拋棄",
+	[Key.malStatusPlanToWatch]: "想看",
+	[Key.malStatusPlanToRead]: "想讀",
+	[Key.malNoData]: "暫無數據",
+	[Key.malNoDataDescription]: "該分類下還沒有任何條目",
+	[Key.malEmpty]: "暫無數據",
+	[Key.malEmptyReason]:
+		"可能的原因：用戶名不存在、列表為私密、Client ID 無效或網絡連接問題",
+	[Key.malFetchError]: "MyAnimeList 資料拉取失敗",
+	[Key.malFetchErrorDesc]:
+		"構建時從 MyAnimeList API 獲取資料失敗。請確認用戶名和 Client ID 正確，且列表為公開狀態。",
+	[Key.malNotConfigured]: "未配置 MyAnimeList 用戶資訊",
+	[Key.malNotConfiguredDesc]:
+		"請在 src/config/siteConfig.ts 中配置你的 MyAnimeList 用戶名和 Client ID（列表需為公開狀態）",
+	[Key.malLastUpdated]: "數據更新於",
+	[Key.malSeasonWinter]: "冬季",
+	[Key.malSeasonSpring]: "春季",
+	[Key.malSeasonSummer]: "夏季",
+	[Key.malSeasonFall]: "秋季",
+
 	// 分頁
 	[Key.paginationFirst]: "首頁",
 	[Key.paginationPrev]: "上一頁",
@@ -218,6 +289,7 @@ export const zh_TW: Translation = {
 	[Key.paginationOf]: "頁，共",
 	[Key.paginationTotal]: "頁，總計",
 	[Key.paginationRecords]: "條記錄",
+	[Key.paginationJump]: "跳轉到指定頁",
 
 	// 404頁面
 	[Key.notFound]: "404",

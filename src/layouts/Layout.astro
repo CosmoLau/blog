@@ -7,6 +7,7 @@ import CodeGroupManager from "@components/features/CodeGroupManager.astro";
 import FancyboxManager from "@components/features/FancyboxManager.astro";
 import FontSetup from "@components/features/FontSetup.astro";
 import MusicManager from "@components/features/MusicManager.astro";
+import MusicPlayerView from "@components/features/MusicPlayerView.astro";
 import SakuraEffect from "@components/features/SakuraEffect.astro";
 import ConfigCarrier from "@components/layout/ConfigCarrier.astro";
 
@@ -15,6 +16,7 @@ import {
 	backgroundWallpaper,
 	displaySettingsConfig,
 	expressiveCodeConfig,
+	musicPlayerConfig,
 	profileConfig,
 	siteConfig,
 } from "@/config";
@@ -41,9 +43,17 @@ interface Props {
 	lang?: string;
 	setOGTypeArticle?: boolean;
 	postSlug?: string;
+	hasWallpaper?: boolean;
 }
 
-let { title, description, lang, setOGTypeArticle, postSlug } = Astro.props;
+let {
+	title,
+	description,
+	lang,
+	setOGTypeArticle,
+	postSlug,
+	hasWallpaper = false,
+} = Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
 // Swup can update the body for each page visit, but it's after the page transition, causing a delay for banner height change
@@ -62,6 +72,18 @@ const shouldShowTopHighlight =
 	navbarTransparentMode === "full" || navbarTransparentMode === "semifull";
 
 const enableBanner = backgroundWallpaper.mode === "banner";
+
+// 子菜单 / 浮动面板的毛玻璃模糊度：跟随 navbar.blur，但不受壁纸模式影响，
+// 且带一个最小值 —— 导航栏可以用 blur: 0 关掉毛玻璃，面板则始终保留毛玻璃。
+// 之所以不复用 #navbar 上的 --navbar-glass-blur：
+// setting-utils.ts 的 updateNavbarTransparency() 会在切到 overlay / none 模式时
+// 把它清成 0px；这里放到 :root 上，同时也能让不在导航栏 DOM 内的
+// .float-panel（#translate-panel、#mobile-toc-panel）继承到。
+const NAVBAR_PANEL_MIN_BLUR = 2;
+const navbarPanelBlur = Math.max(
+	backgroundWallpaper.common?.navbar?.blur ?? 20,
+	NAVBAR_PANEL_MIN_BLUR,
+);
 
 let pageTitle: string;
 if (title) {
@@ -90,9 +112,12 @@ const siteLang = lang.replace("_", "-");
 ---
 
 <!doctype html>
-<html lang={siteLang} class="bg-(--page-bg) text-[14px] md:text-[16px]" data-wallpaper-mode={backgroundWallpaper.mode}>
+<html lang={siteLang} class="bg-(--page-bg) text-[14px] md:text-[16px]" data-wallpaper-mode={backgroundWallpaper.mode} data-has-wallpaper={hasWallpaper ? "" : undefined} data-tag-style={siteConfig.tagStyle ?? "rectangle"} data-category-style={siteConfig.categoryStyle ?? "rectangle"}>
   <head>
     <meta charset="UTF-8" />
+    <style is:inline>
+			@layer properties, theme, base, components, utilities;
+		</style>
     {analyticsConfig?.googleAnalyticsId && (
             <GoogleAnalytics analyticsId={analyticsConfig.googleAnalyticsId} />
     )}
@@ -539,6 +564,7 @@ const siteLang = lang.replace("_", "-");
       define:vars={{
         configHue,
         "page-width": `${siteConfig.pageWidth ?? PAGE_WIDTH}rem`,
+        "navbar-panel-blur": `${navbarPanelBlur}px`,
       }}
     ></style>
     <!-- defines global css variables. This will be applied to <html> <body> and some other elements idk why -->
@@ -593,6 +619,11 @@ const siteLang = lang.replace("_", "-");
     <MusicManager />
     <slot />
 
+    <!-- 播放器视图脚本：必须在 <slot /> 之后（解析到它时所有 widget 的 DOM 要已存在），
+         且在 MusicManager 之后（swup 重跑按文档顺序，window.__fireflyMusic 得先就位） -->
+    {(musicPlayerConfig.showInNavbar || musicPlayerConfig.showInSidebar !== false) && (
+      <MusicPlayerView />
+    )}
 
 
     <!-- Sakura Effect -->
@@ -752,6 +783,7 @@ const siteLang = lang.replace("_", "-");
     // MAIN_PANEL_OVERLAPS_BANNER_HEIGHT,
   } from "@/constants/constants";
   import { backgroundWallpaper, expressiveCodeConfig, siteConfig } from "@/config";
+  import { initializeFloatingPanels } from "@/utils/floating-panel-utils";
 
   /* Preload fonts */
   // (async function() {
@@ -799,6 +831,8 @@ function disableAnimation() {
 
   const bannerEnabled = !!document.getElementById("wallpaper-wrapper");
   const stickyNavbar = siteConfig.navbar.stickyNavbar ?? false;
+
+  initializeFloatingPanels();
 
   function setClickOutsideToClose(panel: string, ignores: string[]) {
       document.addEventListener("click", (event) => {
@@ -979,6 +1013,7 @@ function disableAnimation() {
       }
     });
     window.swup.hooks.on("content:replace", () => {
+      initializeFloatingPanels();
       const isHome = pathsEqual(window.location.pathname, url("/"));
       const currentMode = document.documentElement.getAttribute("data-wallpaper-mode");
       const isMobileForBanner = window.innerWidth < 1024;

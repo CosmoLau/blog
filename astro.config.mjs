@@ -206,7 +206,7 @@ export default defineConfig({
 				borderRadius: "0.75rem",
 				codeFontSize: "0.875rem",
 				codeFontFamily:
-					"var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+					"var(--font-code, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace)",
 				codeLineHeight: "1.5rem",
 				frames: {},
 				textMarkers: {
@@ -224,6 +224,7 @@ export default defineConfig({
 				},
 			},
 			frames: {
+				// 保留原生复制按钮，外观由 src/styles/expressive-code.css 覆盖成主题风格
 				showCopyToClipboardButton: true,
 			},
 		}),
@@ -236,25 +237,33 @@ export default defineConfig({
 				if (pathname === "/dynamic/" && !siteConfig.pages.dynamic) {
 					return false;
 				}
-				if (pathname === "/friends/" && !siteConfig.pages.friends) {
+				if (pathname === "/gallery/" && !siteConfig.pages.gallery) {
 					return false;
 				}
-				if (pathname === "/sponsor/" && !siteConfig.pages.sponsor) {
+				if (pathname === "/friends/" && !siteConfig.pages.friends) {
 					return false;
 				}
 				if (pathname === "/guestbook/" && !siteConfig.pages.guestbook) {
 					return false;
 				}
+				if (pathname === "/booknav/" && !siteConfig.pages.booknav) {
+					return false;
+				}
+				if (pathname === "/bilibili/" && !siteConfig.pages.bilibili) {
+					return false;
+				}
 				if (pathname === "/bangumi/" && !siteConfig.pages.bangumi) {
 					return false;
 				}
-				if (pathname === "/gallery/" && !siteConfig.pages.gallery) {
+				if (pathname === "/vndb/" && !siteConfig.pages.vndb) {
 					return false;
 				}
-				if (pathname === "/anime/" && !siteConfig.pages.anime) {
+				if (pathname === "/mal/" && !siteConfig.pages.mal) {
 					return false;
 				}
-
+				if (pathname === "/sponsor/" && !siteConfig.pages.sponsor) {
+					return false;
+				}
 				return true;
 			},
 		}),

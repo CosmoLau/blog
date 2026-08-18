@@ -13,6 +13,13 @@ export const ja: Translation = {
 	[Key.searchContent]: "内容",
 	[Key.searchViewMore]: "さらに結果を表示 ({count} 件)",
 	[Key.other]: "その他",
+
+	// ナビバーメニューグループ
+	[Key.navArticles]: "記事",
+	[Key.navSocial]: "ソーシャル",
+	[Key.navMine]: "マイ",
+	[Key.navAbout]: "について",
+	[Key.navLinks]: "リンク",
 	[Key.all]: "すべて",
 
 	[Key.tags]: "タグ",
@@ -77,6 +84,10 @@ export const ja: Translation = {
 		"ここは私の友達です、お互いに訪問して交流することを歓迎します",
 	[Key.searchFriends]: "友達を検索...",
 	[Key.friendsEmpty]: "まだ友達がいません",
+	[Key.booknav]: "ブックマーク集",
+	[Key.booknavDescription]: "便利なサイトをカテゴリ別に集めました",
+	[Key.searchBooknav]: "ブックマークを検索...",
+	[Key.booknavEmpty]: "ブックマークがありません",
 	[Key.guestbook]: "ゲストブック",
 	[Key.guestbookDescription]:
 		"ここに足跡を残して、あなたの考えや提案を共有してください",
@@ -107,10 +118,10 @@ export const ja: Translation = {
 	[Key.updatedAt]: "更新日",
 	[Key.readTime]: "読了時間",
 	[Key.license]: "ライセンス",
-	[Key.bangumi]: "バングミ",
+	[Key.bangumi]: "Bangumi",
 
 	// バングミフィルターと状態文本
-	[Key.bangumiTitle]: "私のバングミ",
+	[Key.bangumiTitle]: "私のBangumi",
 	[Key.bangumiSubtitle]: "私の二次元の旅を記録する",
 	[Key.bangumiFilterAll]: "すべて",
 	[Key.bangumiFilterWatched]: "見た",
@@ -172,9 +183,46 @@ export const ja: Translation = {
 	[Key.bangumiUpdatedAt]: "ビルド時間",
 	[Key.bangumiDataStatic]: "静的データ",
 
-	// 追番（アニメ追跡）
-	[Key.anime]: "追番",
-	[Key.animeSubtitle]: "私のアニメ追跡リスト、Bilibili と TMDB からデータ取得",
+	// VNDB
+	[Key.vndb]: "VNDB",
+	[Key.vndbSubtitle]: "私のビジュアルノベルリスト",
+	[Key.vndbFilterAll]: "すべて",
+	[Key.vndbFilterVoted]: "評価済み",
+	[Key.vndbFilterUnvoted]: "未評価",
+	[Key.vndbFilterNotes]: "ノートあり",
+	[Key.vndbStatusWishlist]: "プレイしたい",
+	[Key.vndbStatusPlaying]: "プレイ中",
+	[Key.vndbStatusFinished]: "プレイ済み",
+	[Key.vndbStatusStalled]: "保留",
+	[Key.vndbStatusDropped]: "中断",
+	[Key.vndbStatusUnknown]: "不明",
+	[Key.vndbNoData]: "データなし",
+	[Key.vndbNoDataDescription]: "このカテゴリに項目がありません",
+	[Key.vndbEmpty]: "データなし",
+	[Key.vndbEmptyReason]:
+		"考えられる理由：ユーザーIDが存在しない、リストが非公開、ネットワーク接続の問題、またはAPI制限",
+	[Key.vndbFetchError]: "VNDB データ取得失敗",
+	[Key.vndbFetchErrorDesc]:
+		"ビルド時に VNDB API からのデータ取得に失敗しました。このページは一時的に利用できません。",
+	[Key.vndbNotConfigured]: "VNDB ユーザーIDが未設定です",
+	[Key.vndbNotConfiguredDesc]:
+		"src/config/siteConfig.ts で VNDB ユーザーIDを設定してください",
+	[Key.vndbLastUpdated]: "データ更新",
+	[Key.vndbVotes]: "票",
+	[Key.vndbLengthVeryShort]: "非常に短い",
+	[Key.vndbLengthShort]: "短い",
+	[Key.vndbLengthMedium]: "中程度",
+	[Key.vndbLengthLong]: "長い",
+	[Key.vndbLengthVeryLong]: "非常に長い",
+
+	// 追番 - Bilibili
+	[Key.bilibili]: "Bilibili",
+	[Key.bilibiliSubtitle]: "私のBilibili追番・追劇リスト",
+	[Key.bilibiliNotConfigured]: "Bilibiliデータソースが未設定",
+	[Key.bilibiliNotConfiguredDesc]:
+		"src/config/siteConfig.ts で bilibili.uid を設定してください",
+
+	// 追番 - 共通コンポーネント
 	[Key.animeTotal]: "合計",
 	[Key.animeAverageRating]: "平均評価",
 	[Key.animeSearch]: "アニメを検索...",
@@ -187,20 +235,13 @@ export const ja: Translation = {
 	[Key.animeDateAsc]: "古い順",
 	[Key.animeNoResults]: "一致するアニメが見つかりません",
 	[Key.animeLastUpdated]: "データ更新",
-	[Key.animeSource]: "データソース",
 	[Key.animeEpStatus]: "進捗",
 	[Key.animeViewDetails]: "詳細を見る",
-	[Key.animeNotConfigured]: "アニメデータソースが未設定",
-	[Key.animeNotConfiguredDesc]:
-		"src/config/siteConfig.ts で Bilibili UID または TMDB API Key を設定してください",
 	[Key.animeBilibiliAvg]: "Bilibili 平均",
-	[Key.animeTmdbAvg]: "TMDB 平均",
-	[Key.animeDualSynced]: "デュアル同期済み",
 	[Key.animeNoOverview]: "あらすじなし",
 	[Key.animeClose]: "閉じる",
 	[Key.animeSynopsis]: "あらすじ",
 	[Key.animeWatchNow]: "今すぐ視聴",
-	[Key.animeViewTmdb]: "TMDB 詳細を見る",
 	[Key.animeAllWithCount]: "すべて ({count})",
 	[Key.animeTVWithCount]: "TV ({count})",
 	[Key.animeMovieWithCount]: "映画 ({count})",
@@ -211,6 +252,36 @@ export const ja: Translation = {
 	[Key.animeTypeDrama]: "ドラマ",
 	[Key.animeTypeConcert]: "コンサート",
 
+	// MyAnimeList
+	[Key.mal]: "MyAnimeList",
+	[Key.malSubtitle]: "私の MyAnimeList アニメ・マンガリスト",
+	[Key.malCategoryAnime]: "アニメ",
+	[Key.malCategoryManga]: "マンガ",
+	[Key.malFilterAll]: "すべて",
+	[Key.malStatusWatching]: "視聴中",
+	[Key.malStatusReading]: "読んでいる",
+	[Key.malStatusCompleted]: "見た",
+	[Key.malStatusOnHold]: "保留",
+	[Key.malStatusDropped]: "中断",
+	[Key.malStatusPlanToWatch]: "見たい",
+	[Key.malStatusPlanToRead]: "読みたい",
+	[Key.malNoData]: "データなし",
+	[Key.malNoDataDescription]: "このカテゴリに項目がありません",
+	[Key.malEmpty]: "データなし",
+	[Key.malEmptyReason]:
+		"考えられる理由：ユーザー名が存在しない、リストが非公開、Client ID が無効、またはネットワーク接続の問題",
+	[Key.malFetchError]: "MyAnimeList データ取得失敗",
+	[Key.malFetchErrorDesc]:
+		"ビルド時に MyAnimeList API からのデータ取得に失敗しました。ユーザー名と Client ID を確認し、リストが公開であることを確認してください。",
+	[Key.malNotConfigured]: "MyAnimeList が未設定です",
+	[Key.malNotConfiguredDesc]:
+		"src/config/siteConfig.ts で MyAnimeList のユーザー名と Client ID を設定してください（リストは公開にする必要があります）",
+	[Key.malLastUpdated]: "データ更新",
+	[Key.malSeasonWinter]: "冬",
+	[Key.malSeasonSpring]: "春",
+	[Key.malSeasonSummer]: "夏",
+	[Key.malSeasonFall]: "秋",
+
 	// ページネーション
 	[Key.paginationFirst]: "最初",
 	[Key.paginationPrev]: "前へ",
@@ -220,6 +291,7 @@ export const ja: Translation = {
 	[Key.paginationOf]: "ページ、全",
 	[Key.paginationTotal]: "ページ、合計",
 	[Key.paginationRecords]: "件",
+	[Key.paginationJump]: "指定ページへ移動",
 
 	// 404ページ
 	[Key.notFound]: "404",
